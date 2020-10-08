@@ -158,7 +158,11 @@ export class ExportToCsv {
             let row = "";
             for (let keyPos = 0; keyPos < keys.length; keyPos++) {
                 const key = keys[keyPos];
-                row += this._formatData(this._data[i][key]) + this._options.fieldSeparator;
+                const value = this._data[i][key];
+                if (value != null) {
+                    row += this._formatData(value)
+                }
+                row += this._options.fieldSeparator;
             }
 
             row = row.slice(0, -1);
