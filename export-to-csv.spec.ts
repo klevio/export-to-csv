@@ -37,6 +37,18 @@ describe('ExportToCsv', () => {
         expect(string).toBeTruthy(typeof string === 'string');
     });
 
+    it('should ignore null values', () => {
+        const options: Options = {
+            title: "Test Csv",
+            useBom: true,
+            useKeysAsHeaders: true
+        }
+
+        const exportToCsvInstance = new ExportToCsv(options);
+        const string = exportToCsvInstance.generateCsv([{ name: "Test 1", age: null, average: 8.2 }], true);
+        expect(string).toEqual('\ufeffname,age,average\r\n"Test 1",,8.2\r\n');
+    });
+
     it('should use keys of first object in collection as headers', () => {
         const options: Options = {
             title: "Test Csv",
