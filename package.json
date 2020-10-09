@@ -1,6 +1,6 @@
 {
   "name": "@klevio/export-to-csv",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Easily create CSV data from json collection",
   "repository": {
     "type": "git",
@@ -9,7 +9,13 @@
   "scripts": {
     "dev": "tsc --watch",
     "test": "tsc && karma start",
-    "prepublishOnly": "tsc"
+    "compile": "npm run compile-es && npm run compile-js",
+    "clean": "npm run clean-es && npm run clean-js",
+    "compile-es": "tsc --outDir es --module es6",
+    "clean-es": "rm -rf es",
+    "compile-js": "tsc",
+    "clean-js": "rm -rf build",
+    "prepublish": "npm run compile"
   },
   "keywords": [
     "export-to-csv",
@@ -32,6 +38,7 @@
     "url": "https://github.com/klevio/export-to-csv/issues"
   },
   "main": "./build/index.js",
+  "module": "./es/index.js",
   "types": "./build/export-to-csv.d.ts",
   "homepage": "https://github.com/klevio/export-to-csv#readme",
   "devDependencies": {
